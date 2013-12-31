@@ -29,7 +29,7 @@ function dataUriToBuffer (uri) {
   //console.log(meta);
 
   var base64 = false;
-  var charset;
+  var charset = 'US-ASCII';
   for (var i = 0; i < meta.length; i++) {
     if ('base64' == meta[i]) {
       base64 = true;
@@ -47,10 +47,8 @@ function dataUriToBuffer (uri) {
   // set `.type` property to MIME type
   buffer.type = meta[0] || 'text/plain';
 
-  // set the `.charset` property if one was speified in the URI
-  if (charset) {
-    buffer.charset = charset;
-  }
+  // set the `.charset` property
+  buffer.charset = charset;
 
   return buffer;
 }
