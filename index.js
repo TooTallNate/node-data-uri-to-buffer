@@ -26,6 +26,8 @@ function dataUriToBuffer (uri) {
 
   // remove the "data:" scheme and parse the metadata
   var meta = parts[0].substring(5).split(';');
+  //console.log(meta);
+
   var base64 = false;
   var charset;
   for (var i = 0; i < meta.length; i++) {
@@ -43,7 +45,7 @@ function dataUriToBuffer (uri) {
   var buffer = new Buffer(data, encoding);
 
   // set `.type` property to MIME type
-  buffer.type = meta[0];
+  buffer.type = meta[0] || 'text/plain';
 
   // set the `.charset` property if one was speified in the URI
   if (charset) {

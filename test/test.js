@@ -8,6 +8,22 @@ var dataUriToBuffer = require('../');
 
 describe('data-uri-to-buffer', function () {
 
+  it('should decode bare-bones Data URIs', function () {
+    var uri = 'data:,Hello%2C%20World!';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('Hello, World!', buf.toString());
+  });
+
+  it('should decode bare-bones "base64" Data URIs', function () {
+    var uri = 'data:text/plain;base64,SGVsbG8sIFdvcmxkIQ%3D%3D';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('Hello, World!', buf.toString());
+  });
+
   it('should decode plain-text Data URIs', function () {
     var html = '<!DOCTYPE html>'+
                '<html lang="en">'+
@@ -20,7 +36,7 @@ describe('data-uri-to-buffer', function () {
 
     var buf = dataUriToBuffer(uri);
     assert.equal('text/html', buf.type);
-    //assert.equal('utf-8', buf.charset);
+    assert.equal('utf-8', buf.charset);
     assert.equal(html, buf.toString());
   });
 
