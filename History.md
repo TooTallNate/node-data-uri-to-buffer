@@ -1,4 +1,9 @@
 
+0.0.3 / 2014-01-08
+==================
+
+  * index: fix a URI with a comma in the data portion
+
 0.0.2 / 2014-01-08
 ==================
 
