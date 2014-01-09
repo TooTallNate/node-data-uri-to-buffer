@@ -40,6 +40,57 @@ describe('data-uri-to-buffer', function () {
     assert.equal(html, buf.toString());
   });
 
+  // the next 4 tests are from:
+  // https://bug161965.bugzilla.mozilla.org/attachment.cgi?id=94670&action=view
+
+  it('should decode "ISO-8859-8 in Base64" URIs', function () {
+    var uri = 'data:text/plain;charset=iso-8859-8-i;base64,+ezl7Q==';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('iso-8859-8-i', buf.charset);
+    assert.equal(4, buf.length);
+    assert.equal(0xf9, buf[0]);
+    assert.equal(0xec, buf[1]);
+    assert.equal(0xe5, buf[2]);
+    assert.equal(0xed, buf[3]);
+  });
+
+  it('should decode "ISO-8859-8 in URL-encoding" URIs', function () {
+    var uri = 'data:text/plain;charset=iso-8859-8-i,%f9%ec%e5%ed';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('iso-8859-8-i', buf.charset);
+    assert.equal(4, buf.length);
+    assert.equal(0xf9, buf[0]);
+    assert.equal(0xec, buf[1]);
+    assert.equal(0xe5, buf[2]);
+    assert.equal(0xed, buf[3]);
+  });
+
+  it('should decode "UTF-8 in Base64" URIs', function () {
+    var uri = 'data:text/plain;charset=UTF-8;base64,16nXnNeV150=';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('UTF-8', buf.charset);
+    assert.equal(8, buf.length);
+    assert.equal('שלום', buf.toString('utf8'));
+  });
+
+  it('should decode "UTF-8 in URL-encoding" URIs', function () {
+    var uri = 'data:text/plain;charset=UTF-8,%d7%a9%d7%9c%d7%95%d7%9d';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('UTF-8', buf.charset);
+    assert.equal(8, buf.length);
+    assert.equal('שלום', buf.toString('utf8'));
+  });
+
+  // this next one is from Wikipedia IIRC
+
   it('should decode "base64" Data URIs with newlines', function () {
     var uri = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA\n' +
       'AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO\n' +
@@ -50,6 +101,14 @@ describe('data-uri-to-buffer', function () {
     assert.equal('iVBORw0KGgoAAAANSUhEUgAAAAUA' +
       'AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO' +
       '9TXL0Y4OHwAAAABJRU5ErkJggg==', buf.toString('base64'));
+  });
+
+  it('should decode a plain-text URI with a space character in it', function () {
+    var uri = 'data:,foo bar';
+
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('foo bar', buf.toString());
   });
 
 });
