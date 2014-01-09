@@ -39,7 +39,7 @@ function dataUriToBuffer (uri) {
   }
 
   // get the encoded data portion and decode URI-encoded chars
-  var data = decodeURIComponent(parts[1]);
+  var data = unescape(parts[1]);
 
   var encoding = base64 ? 'base64' : 'ascii';
   var buffer = new Buffer(data, encoding);
