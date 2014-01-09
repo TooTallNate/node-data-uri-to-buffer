@@ -1,7 +1,7 @@
 data-uri-to-buffer
 ==================
 ### Generate a Buffer instance from a Data URI string
-[![Build Status](https://travis-ci.org/TooTallNate/data-uri-to-buffer.png?branch=master)](https://travis-ci.org/TooTallNate/data-uri-to-buffer)
+[![Build Status](https://travis-ci.org/TooTallNate/node-data-uri-to-buffer.png?branch=master)](https://travis-ci.org/TooTallNate/node-data-uri-to-buffer)
 
 
 
