@@ -21,12 +21,12 @@ function dataUriToBuffer (uri) {
   // strip newlines
   uri = uri.replace(/\r?\n/g, '');
 
-  // retreive just the "data" portion
-  var parts = uri.split(',');
+  // split the URI up into the "metadata" and the "data" portions
+  var firstComma = uri.indexOf(',');
+  if (-1 === firstComma || firstComma <= 4) throw new TypeError('malformed data: URI');
 
   // remove the "data:" scheme and parse the metadata
-  var meta = parts[0].substring(5).split(';');
-  //console.log(meta);
+  var meta = uri.substring(5, firstComma).split(';');
 
   var base64 = false;
   var charset = 'US-ASCII';
@@ -39,7 +39,7 @@ function dataUriToBuffer (uri) {
   }
 
   // get the encoded data portion and decode URI-encoded chars
-  var data = unescape(parts[1]);
+  var data = unescape(uri.substring(firstComma + 1));
 
   var encoding = base64 ? 'base64' : 'ascii';
   var buffer = new Buffer(data, encoding);

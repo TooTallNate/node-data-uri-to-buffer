@@ -111,4 +111,11 @@ describe('data-uri-to-buffer', function () {
     assert.equal('foo bar', buf.toString());
   });
 
+  it('should take "data" segment after the first comma', function () {
+    var uri = 'data:,a,b';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('a,b', buf.toString());
+  });
+
 });
