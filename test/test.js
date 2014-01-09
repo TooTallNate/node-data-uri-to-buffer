@@ -111,11 +111,18 @@ describe('data-uri-to-buffer', function () {
     assert.equal('foo bar', buf.toString());
   });
 
-  it('should take "data" segment after the first comma', function () {
+  it('should decode data with a "," comma char', function () {
     var uri = 'data:,a,b';
     var buf = dataUriToBuffer(uri);
     assert.equal('text/plain', buf.type);
     assert.equal('a,b', buf.toString());
+  });
+
+  it('should decode data with traditionally reserved characters like ";"', function () {
+    var uri = 'data:,;test';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal(';test', buf.toString());
   });
 
 });
