@@ -19,7 +19,9 @@
     "datauri",
     "data-uri",
     "buffer",
-    "convert"
+    "convert",
+    "rfc2397",
+    "2397"
   ],
   "author": "Nathan Rajlich <nathan@tootallnate.net> (http://n8.io/)",
   "license": "MIT",
