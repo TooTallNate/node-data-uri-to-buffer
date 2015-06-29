@@ -1,6 +1,6 @@
 {
   "name": "data-uri-to-buffer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate a Buffer instance from a Data URI string",
   "main": "index.js",
   "directories": {
