@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
   "devDependencies": {
-    "mocha": "~1.16.2"
+    "mocha": "2"
   }
 }
