@@ -3,9 +3,6 @@
   "version": "0.0.4",
   "description": "Generate a Buffer instance from a Data URI string",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "test": "mocha --reporter spec"
   },
@@ -30,6 +27,6 @@
   },
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
   "devDependencies": {
-    "mocha": "2"
+    "mocha": "^3.4.2"
   }
 }
