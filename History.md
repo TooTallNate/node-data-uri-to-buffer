@@ -1,4 +1,11 @@
 
+1.0.0 / 2017-06-09
+==================
+
+  * Bumping to v1.0.0 for semver semantics
+  * random updates for newer Node.js versions
+  * travis: test more node versions and fix v0.8
+
 0.0.4 / 2015-06-29
 ==================
 
