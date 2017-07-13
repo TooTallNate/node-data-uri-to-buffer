@@ -13,6 +13,8 @@ describe('data-uri-to-buffer', function () {
 
     var buf = dataUriToBuffer(uri);
     assert.equal('text/plain', buf.type);
+    assert.equal('text/plain;charset=US-ASCII', buf.typeFull);
+    assert.equal('US-ASCII', buf.charset);
     assert.equal('Hello, World!', buf.toString());
   });
 
@@ -123,6 +125,51 @@ describe('data-uri-to-buffer', function () {
     var buf = dataUriToBuffer(uri);
     assert.equal('text/plain', buf.type);
     assert.equal(';test', buf.toString());
+  });
+
+  it('should not default to US-ASCII if main type is provided', function () {
+    var uri = 'data:text/plain,abc';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('text/plain', buf.typeFull);
+    assert.equal('', buf.charset);
+    assert.equal('abc', buf.toString());
+  });
+
+  it('should default to text/plain if main type is not provided', function () {
+    var uri = 'data:;charset=UTF-8,abc';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('text/plain;charset=UTF-8', buf.typeFull);
+    assert.equal('UTF-8', buf.charset);
+    assert.equal('abc', buf.toString());
+  });
+
+  it('should not allow charset without a leading ;', function () {
+    var uri = 'data:charset=UTF-8,abc';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('charset=UTF-8', buf.type);
+    assert.equal('charset=UTF-8', buf.typeFull);
+    assert.equal('', buf.charset);
+    assert.equal('abc', buf.toString());
+  });
+
+  it('should allow custom media type parameters', function () {
+    var uri = 'data:application/javascript;version=1.8;charset=UTF-8,abc';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('application/javascript', buf.type);
+    assert.equal('application/javascript;version=1.8;charset=UTF-8', buf.typeFull);
+    assert.equal('UTF-8', buf.charset);
+    assert.equal('abc', buf.toString());
+  });
+
+  it('should allow base64 annotation anywhere', function () {
+    var uri = 'data:text/plain;base64;charset=UTF-8,YWJj';
+    var buf = dataUriToBuffer(uri);
+    assert.equal('text/plain', buf.type);
+    assert.equal('text/plain;charset=UTF-8', buf.typeFull);
+    assert.equal('UTF-8', buf.charset);
+    assert.equal('abc', buf.toString());
   });
 
 });
