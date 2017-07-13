@@ -29,14 +29,24 @@ function dataUriToBuffer (uri) {
   // remove the "data:" scheme and parse the metadata
   var meta = uri.substring(5, firstComma).split(';');
 
+  var type = meta[0] || 'text/plain';
+  var typeFull = type;
   var base64 = false;
-  var charset = 'US-ASCII';
-  for (var i = 0; i < meta.length; i++) {
+  var charset = '';
+  for (var i = 1; i < meta.length; i++) {
     if ('base64' == meta[i]) {
       base64 = true;
-    } else if (0 == meta[i].indexOf('charset=')) {
-      charset = meta[i].substring(8);
+    } else {
+      typeFull += ';' + meta[i];
+      if (0 == meta[i].indexOf('charset=')) {
+        charset = meta[i].substring(8);
+      }
     }
+  }
+  // defaults to US-ASCII only if type is not provided
+  if (!meta[0] && !charset.length) {
+    typeFull += ';charset=US-ASCII';
+    charset = 'US-ASCII';
   }
 
   // get the encoded data portion and decode URI-encoded chars
@@ -45,8 +55,9 @@ function dataUriToBuffer (uri) {
   var encoding = base64 ? 'base64' : 'ascii';
   var buffer = new Buffer(data, encoding);
 
-  // set `.type` property to MIME type
-  buffer.type = meta[0] || 'text/plain';
+  // set `.type` and `.typeFull` properties to MIME type
+  buffer.type = type;
+  buffer.typeFull = typeFull;
 
   // set the `.charset` property
   buffer.charset = charset;
