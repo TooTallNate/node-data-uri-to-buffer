@@ -1,4 +1,11 @@
 
+1.2.0 / 2017-07-18
+==================
+
+  * Essentially identical to v1.0.0. Reverting changes from v1.1.0 because they are breaking changes and should be part of a major version bump
+  * Revert "More correct media type handling"
+  * Revert "add typings for Typescript"
+
 1.1.0 / 2017-07-17
 ==================
 
