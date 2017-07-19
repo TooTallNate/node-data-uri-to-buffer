@@ -1,4 +1,10 @@
 
+2.0.0 / 2017-07-18
+==================
+
+  * More correct media type handling
+  * add typings for Typescript
+
 1.2.0 / 2017-07-18
 ==================
 
