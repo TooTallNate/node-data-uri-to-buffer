@@ -1,4 +1,10 @@
 /// <reference types="node" />
 
-declare function dataUriToBuffer(uri: string): Buffer;
+class MimeBuffer extends Buffer {
+  type:string
+  typeFull:string
+  charset:string
+}
+
+declare function dataUriToBuffer(uri: string): MimeBuffer;
 export = dataUriToBuffer;
