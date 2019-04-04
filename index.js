@@ -14,9 +14,11 @@ module.exports = dataUriToBuffer;
  * @api public
  */
 
-function dataUriToBuffer (uri) {
+function dataUriToBuffer(uri) {
   if (!/^data\:/i.test(uri)) {
-    throw new TypeError('`uri` does not appear to be a Data URI (must begin with "data:")');
+    throw new TypeError(
+      '`uri` does not appear to be a Data URI (must begin with "data:")'
+    );
   }
 
   // strip newlines
@@ -24,7 +26,9 @@ function dataUriToBuffer (uri) {
 
   // split the URI up into the "metadata" and the "data" portions
   var firstComma = uri.indexOf(',');
-  if (-1 === firstComma || firstComma <= 4) throw new TypeError('malformed data: URI');
+  if (-1 === firstComma || firstComma <= 4) {
+    throw new TypeError('malformed data: URI');
+  }
 
   // remove the "data:" scheme and parse the metadata
   var meta = uri.substring(5, firstComma).split(';');
