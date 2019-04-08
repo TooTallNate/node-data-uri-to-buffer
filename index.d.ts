@@ -1,6 +1,6 @@
 /// <reference types="node" />
 
-class MimeBuffer extends Buffer {
+declare class MimeBuffer extends Buffer {
   type: string;
   typeFull: string;
   charset: string;
