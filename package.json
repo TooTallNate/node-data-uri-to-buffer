@@ -27,10 +27,8 @@
     "url": "https://github.com/TooTallNate/node-data-uri-to-buffer/issues"
   },
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
-  "dependencies": {
-    "@types/node": "^8.0.7"
-  },
   "devDependencies": {
+    "@types/node": "^8.0.7",
     "mocha": "^3.4.2"
   }
 }
