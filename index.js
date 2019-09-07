@@ -57,7 +57,7 @@ function dataUriToBuffer(uri) {
   var data = unescape(uri.substring(firstComma + 1));
 
   var encoding = base64 ? 'base64' : 'ascii';
-  var buffer = new Buffer(data, encoding);
+  var buffer = Buffer.from ? Buffer.from(data, encoding) : new Buffer(data, encoding);
 
   // set `.type` and `.typeFull` properties to MIME type
   buffer.type = type;
