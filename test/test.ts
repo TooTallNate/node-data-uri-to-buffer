@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 
-var assert = require('assert');
-var dataUriToBuffer = require('../');
+import assert from 'assert';
+import dataUriToBuffer from '../src';
 
 describe('data-uri-to-buffer', function() {
 	it('should decode bare-bones Data URIs', function() {

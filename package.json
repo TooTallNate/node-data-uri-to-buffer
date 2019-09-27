@@ -2,8 +2,8 @@
   "name": "data-uri-to-buffer",
   "version": "2.0.2",
   "description": "Generate a Buffer instance from a Data URI string",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
@@ -35,9 +35,10 @@
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
   "devDependencies": {
     "@types/es6-promisify": "^5.0.0",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.5.3",
-    "mocha": "^6.2.0",
-    "typescript": "^3.5.3",
+    "@typescript-eslint/eslint-plugin": "1.6.0",
+    "@typescript-eslint/parser": "1.1.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-config-prettier": "4.1.0",
@@ -45,7 +46,7 @@
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.12.4",
-    "@typescript-eslint/parser": "1.1.0",
-    "@typescript-eslint/eslint-plugin": "1.6.0"
+    "mocha": "^6.2.0",
+    "typescript": "^3.5.3"
   }
 }
