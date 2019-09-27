@@ -17,18 +17,18 @@ function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
 	uri = uri.replace(/\r?\n/g, '');
 
 	// split the URI up into the "metadata" and the "data" portions
-	let firstComma = uri.indexOf(',');
+	const firstComma = uri.indexOf(',');
 	if (firstComma === -1 || firstComma <= 4) {
 		throw new TypeError('malformed data: URI');
 	}
 
 	// remove the "data:" scheme and parse the metadata
-	let meta = uri.substring(5, firstComma).split(';');
+	const meta = uri.substring(5, firstComma).split(';');
 
-	let type = meta[0] || 'text/plain';
-	let typeFull = type;
-	let base64 = false;
 	let charset = '';
+	let base64 = false;
+	const type = meta[0] || 'text/plain';
+	let typeFull = type;
 	for (let i = 1; i < meta.length; i++) {
 		if (meta[i] === 'base64') {
 			base64 = true;
@@ -46,9 +46,8 @@ function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
 	}
 
 	// get the encoded data portion and decode URI-encoded chars
-	let data = unescape(uri.substring(firstComma + 1));
-
 	const encoding = base64 ? 'base64' : 'ascii';
+	const data = unescape(uri.substring(firstComma + 1));
 	const buffer = (Buffer.from
 		? Buffer.from(data, encoding)
 		: new Buffer(data, encoding)) as dataUriToBuffer.MimeBuffer;
