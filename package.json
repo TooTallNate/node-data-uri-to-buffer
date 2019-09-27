@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "mocha --reporter spec",
+    "test": "mocha --reporter spec dist/test/*.js",
     "test-lint": "eslint src --ext .js,.ts",
     "prepublishOnly": "npm run build"
   },
