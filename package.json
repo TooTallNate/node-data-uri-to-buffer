@@ -17,6 +17,9 @@
     "type": "git",
     "url": "git://github.com/TooTallNate/node-data-uri-to-buffer.git"
   },
+  "engines": {
+    "node": ">= 6"
+  },
   "keywords": [
     "data",
     "uri",
