@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
   "devDependencies": {
+    "@types/buffer-from": "^1.1.0",
     "@types/es6-promisify": "^5.0.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.5.3",
@@ -51,5 +52,8 @@
     "eslint-plugin-react": "7.12.4",
     "mocha": "^6.2.0",
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "buffer-from": "^1.1.1"
   }
 }
