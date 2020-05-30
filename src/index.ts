@@ -1,5 +1,3 @@
-import bufferFrom from 'buffer-from';
-
 /**
  * Returns a `Buffer` instance from the given data URI `uri`.
  *
@@ -50,7 +48,7 @@ function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
 	// get the encoded data portion and decode URI-encoded chars
 	const encoding = base64 ? 'base64' : 'ascii';
 	const data = unescape(uri.substring(firstComma + 1));
-	const buffer = bufferFrom(data, encoding) as dataUriToBuffer.MimeBuffer;
+	const buffer = Buffer.from(data, encoding) as dataUriToBuffer.MimeBuffer;
 
 	// set `.type` and `.typeFull` properties to MIME type
 	buffer.type = type;
