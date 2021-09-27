@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 import assert from 'assert';
 import dataUriToBuffer from '../src';
 

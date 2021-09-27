@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
     "strict": true,
-    "module": "CommonJS",
-    "target": "es2015",
+    "module": "es2020",
+    "target": "es2019",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "lib": ["esnext"],
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true
   },
   "include": [
-    "src/**/*",
-    "test/**/*"
+    "src/**/*.ts",
   ],
   "exclude": [
     "node_modules"
