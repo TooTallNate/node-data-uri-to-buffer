@@ -39,7 +39,7 @@
   "homepage": "https://github.com/TooTallNate/node-data-uri-to-buffer",
   "devDependencies": {
     "@types/es6-promisify": "^5.0.0",
-    "@types/mocha": "^9.0.0",
+    "@types/jest": "^27.0.2",
     "@types/node": "^10.5.3",
     "jest": "^27.2.2",
     "ts-jest": "^27.0.5",
