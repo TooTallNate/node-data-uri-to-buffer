@@ -1,12 +1,17 @@
+export interface MimeBuffer extends Buffer {
+	type: string;
+	typeFull: string;
+	charset: string;
+}
+
 /**
  * Returns a `Buffer` instance from the given data URI `uri`.
  *
  * @param {String} uri Data URI to turn into a Buffer instance
- * @return {Buffer} Buffer instance from Data URI
+ * @returns {Buffer} Buffer instance from Data URI
  * @api public
  */
-
-function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
+export function dataUriToBuffer(uri: string): MimeBuffer {
 	if (!/^data:/i.test(uri)) {
 		throw new TypeError(
 			'`uri` does not appear to be a Data URI (must begin with "data:")'
@@ -48,7 +53,7 @@ function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
 	// get the encoded data portion and decode URI-encoded chars
 	const encoding = base64 ? 'base64' : 'ascii';
 	const data = unescape(uri.substring(firstComma + 1));
-	const buffer = Buffer.from(data, encoding) as dataUriToBuffer.MimeBuffer;
+	const buffer = Buffer.from(data, encoding) as MimeBuffer;
 
 	// set `.type` and `.typeFull` properties to MIME type
 	buffer.type = type;
@@ -60,12 +65,4 @@ function dataUriToBuffer(uri: string): dataUriToBuffer.MimeBuffer {
 	return buffer;
 }
 
-namespace dataUriToBuffer { // eslint-disable-line no-redeclare
-	export interface MimeBuffer extends Buffer {
-		type: string;
-		typeFull: string;
-		charset: string;
-	}
-}
-
-export = dataUriToBuffer;
+export default dataUriToBuffer;
