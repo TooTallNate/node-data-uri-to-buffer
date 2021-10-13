@@ -173,4 +173,13 @@ describe('data-uri-to-buffer', function() {
 		assert.equal('UTF-8', buf.charset);
 		assert.equal('abc', buf.toString());
 	});
+
+	it('should parse meta with unnecessary semicolons', function() {
+		var uri = 'data:text/plain;;charset=UTF-8;;;base64;;;;,YWJj';
+		var buf = dataUriToBuffer(uri);
+		assert.equal('text/plain', buf.type);
+		assert.equal('text/plain;charset=UTF-8', buf.typeFull);
+		assert.equal('UTF-8', buf.charset);
+		assert.equal('abc', buf.toString());
+	});
 });
